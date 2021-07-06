@@ -158,4 +158,95 @@
     }
 ```
 ### - Factory Method Pattern
+#### Studi Kasus
+* Aplikasi kita membutuhkan data Social Media, namun kita tidak terlalu peduli dengan implementasi detail social media nya
+* Factory Method bisa menentukan implementasi detail object social media sesuai dengan tipe yang kita berikan
+
+#### interface social media
+
+```java
+    public interface SocialMedia {
+        String getName();
+    
+        String getUrl();
+    
+        SocialMediaType getType();
+    }
+```
+
+#### enum social media type
+
+```java
+    public enum SocialMediaType {
+        INSTAGRAM, FACEBOOK, TWITTER
+    }
+```
+
+#### class facebook social media
+
+```java
+    public class FacebookV2SocialMedia implements SocialMedia {
+    
+        @Getter
+        private final String name = "FACEBOOK";
+    
+        @Getter
+        private final String url = "https://web.facebook.com";
+    
+        @Getter
+        private final SocialMediaType type = SocialMediaType.FACEBOOK;
+    }
+```
+
+#### class factory method
+
+![Factory Method](http://www.plantuml.com/plantuml/png/ZP31QeOm48JF_px5uaaf-00MYwTUMsXV8CID3SHTMLT4Ij-zLffIxQMtPFXcXbdePdDgovW08XjfS9xmMQLVlE4xV03uvEOvIqzC6CSfqKXiF-fVxdMLVt6FpflejZVTxdAhLt96tx_onJJoWBPDLDr_-I_EMkFmPlL3JWHWCS94mL32fQTfJk5mY-58nhR5GfWALB956PdMNvFBwapQAXSoZzv9uXvPZ02w_NbSzXC0)
+
+```java
+    @SpringBootApplication
+    public class FactoryMethodApplication {
+    
+        @Bean
+        @Scope("prototype")
+        public SocialMedia socialMedia(SocialMediaType type) {
+            if (type == SocialMediaType.FACEBOOK) {
+                return new FacebookV2SocialMedia();
+            } else if (type == SocialMediaType.INSTAGRAM) {
+                return new InstagramSocialMedia();
+            } else if (type == SocialMediaType.TWITTER) {
+                return new TwitterSocialMedia();
+            } else {
+                throw new IllegalArgumentException("Unsupported Social media Type");
+            }
+        }
+    }
+```
+#### class factory inheritance
+
+![Factory Inheritance](https://www.plantuml.com/plantuml/png/fOxF2e904CRFpbFCKGby08FmrBKElS2oZYNidrX79A9tRmMDjQ4ktdPcllrzlxfd5NYm1g1pJA5Lcl0SV3DenYUy0BHHVR-iJewmitT3bXn_jZ9t6VsFdAmvAiq-F69RjbkQTI35D4zviHS5yoVfivKOpJSGl-9bULW88CJJQnn1UAI1E08upuI6MaRVek1LrSe8CaTZmiyB8DVWn9X9eRlU96fg_eUAvnMgZi_1cZS0)
+
+```java
+    @SpringBootApplication
+    public class FactoryInheritanceApplication {
+    
+        @Bean
+        @Scope("prototype")
+        public SocialMedia socialMediaFacebook() {
+            return new FacebookV2SocialMedia();
+        }
+    
+        @Bean
+        @Scope("prototype")
+        public SocialMedia socialMediaInstagram() {
+            return new InstagramSocialMedia();
+        }
+    
+        @Bean
+        @Scope("prototype")
+        public SocialMedia socialMediaTwitter() {
+            return new TwitterSocialMedia();
+        }
+    }
+```
+
 ### - Abstract Factory Pattern
