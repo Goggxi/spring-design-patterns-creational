@@ -196,6 +196,10 @@
         @Getter
         private final SocialMediaType type = SocialMediaType.FACEBOOK;
     }
+    
+    // class instagramSocialMedia ...
+
+    // class twitterSocialMedia ...
 ```
 
 #### class factory method
@@ -244,9 +248,18 @@
         @Bean
         @Scope("prototype")
         public SocialMedia socialMediaTwitter() {
-            return new TwitterSocialMedia();
+            return new TwitterSocialMedia();    
         }
     }
 ```
 
 ### - Abstract Factory Pattern
+
+* GOF : Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
+* Menyediakan sebuah interface untuk membuat keluarga object yang saling berkaitan tanpa perlu menentukan class konkret nya
+* Kadang disebut juga dengan pattern Kit
+
+![Factory Inheritance](http://www.plantuml.com/plantuml/png/jPF1IWD138RFpLFas2Bq0If84V7atVCmcws3ipCocr94V7TdDoj4CeeijASc-VFz-JlqEB8hV1uYG4XCfNUUy3caBb_m0pu1V7JZk7IUmkc5CGnlaGPA_DqskWTNNfioRN9_Piv9cqZ7c4ZRwCIaATD9kXFne_ESotlrsjmisNmXnoJ5TdTR1xA_3AIe0nLDeyoHrpAIb2jyi7x-iFh9sU_lK5OR0za3cr-jpVKl4lskOC8fo5Is1Uh90L9cmZBJSu_Myt3GlmLi4btqbTiTKEfmeloV9Vx2Kd4iArAlK2f6uoeLUmN8dcH0n_fr_cj_0G00)
+
+
+
